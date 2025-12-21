@@ -1,0 +1,543 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{geometry}
+\geometry{left=30mm, right=15mm, top=20mm, bottom=20mm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{titlesec}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Курсовая работа по Основам программирования},
+}
+
+\titleformat{\section}
+{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\begin{document}
+
+\begin{center}
+    \textbf{МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ}
+    
+    федеральное государственное автономное образовательное учреждение
+    высшего образования
+    
+    «САНКТ-ПЕТЕРБУРГСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ\\
+    АЭРОКОСМИЧЕСКОГО ПРИБОРОСТРОЕНИЯ»
+    
+    \vspace{5mm}
+    
+    \textbf{КАФЕДРА ИНФОКОММУНИКАЦИОННЫХ ТЕХНОЛОГИЙ И СИСТЕМ СВЯЗИ}
+    
+    \vspace{10mm}
+    
+    КУРСОВАЯ РАБОТА (ПРОЕКТ)\\
+    ЗАЩИЩЕНА С ОЦЕНКОЙ
+    
+    \vspace{10mm}
+    
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{РУКОВОДИТЕЛЬ} & \textbf{} & \textbf{} \\
+        \hline
+        ассистент & подпись, дата & А. Н. Головенков \\
+        \hline
+        должность, уч. степень, звание &  & инициалы, фамилия \\
+        \hline
+    \end{tabular}
+    
+    \vspace{10mm}
+    
+    \framebox[\textwidth]{
+        \begin{minipage}{\textwidth}
+            \centering
+            \textbf{ПОЯСНИТЕЛЬНАЯ ЗАПИСКА}\\
+            К КУРСОВОЙ РАБОТЕ\\
+            «Игра В Хексагон (Гексагон)»
+        \end{minipage}
+    }
+    
+    \vspace{5mm}
+    
+    \framebox[\textwidth]{
+        \begin{minipage}{\textwidth}
+            \centering
+            \# \\
+        \end{minipage}
+    }
+    
+    \vspace{5mm}
+    
+    \framebox[\textwidth]{
+        \begin{minipage}{\textwidth}
+            \centering
+            по дисциплине: ОСНОВЫ ПРОГРАММИРОВАНИЯ \\
+        \end{minipage}
+    }
+    
+    \vspace{5mm}
+    
+    \framebox[\textwidth]{
+        \begin{minipage}{\textwidth}
+            \centering
+            \#\#\# \\
+        \end{minipage}
+    }
+    
+    \vspace{10mm}
+    
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{РАБОТУ ВЫПОЛНИЛ} & \textbf{} & \textbf{} & \textbf{} \\
+        \hline
+        СТУДЕНТ гр. № 2453 &  & подпись, дата & И.К. Князев \\
+        \hline
+         &  &  & инициалы, фамилия \\
+        \hline
+    \end{tabular}
+    
+    \vspace{15mm}
+    
+    Санкт-Петербург 2025
+\end{center}
+
+\tableofcontents
+
+\newpage
+
+\section{ВВЕДЕНИЕ}
+
+В современном мире задачи, связанные с моделированием стратегических процессов, играют важную роль в различных областях: математике, информатике, теории игр, искусственном интеллекте. Одним из удобных способов изучения таких процессов является разработка компьютерных игр со строгими правилами, позволяющих исследовать алгоритмы поведения игроков, эффективность стратегий и методы взаимодействия.
+
+В рамках данной курсовой работы реализована компьютерная версия настольной игры «Хексагон» (Hexxagon). Игра основана на гексагональном поле, где два игрока поочерёдно перемещают свои фишки, стремясь захватить как можно больше клеток. Данная игра интересна тем, что сочетает в себе простоту правил и сложность стратегических решений, что делает её удобным объектом для программной реализации и анализа.
+
+Программа написана на языке C++ с использованием графической библиотеки SFML. Реализованы два режима игры: «Игрок против игрока» и «Игрок против компьютера», при этом компьютер использует алгоритм выбора наилучшего хода на основе оценки выгодности.
+
+\section{ПОСТАНОВКА ЗАДАЧИ}
+
+Целью курсовой работы является создание программной реализации стратегической игры «Хексагон». Для достижения цели необходимо решить следующие задачи:
+
+\begin{enumerate}
+    \item Реализовать меню выбора режима игры.
+    \item Разработать гексагональную структуру игрового поля.
+    \item Обеспечить корректное отображение игрового поля и интерфейса.
+    \item Реализовать логику игры.
+    \item Реализовать завершение игры при невозможности дальнейших ходов.
+    \item Разработать алгоритм искусственного интеллекта для режима «Игрок против компьютера».
+    \item Провести тестирование и анализ полученных результатов.
+\end{enumerate}
+
+\section{АЛГОРИТМ}
+
+\subsection{Описание алгоритма}
+
+Алгоритм игры основан на обработке состояний гексагонального поля. Каждая клетка имеет владельца: «нейтральная», «игрок 1» или «игрок 2».
+
+Игрок выбирает свою клетку и совершает ход:
+
+\begin{enumerate}
+    \item На расстояние 1 клетку — происходит клонирование: новая клетка становится клеткой игрока.
+    \item На расстояние 2 клетки — происходит прыжок: исходная клетка становится нейтральной.
+\end{enumerate}
+
+После хода выполняется конвертация всех соседних клеток, принадлежащих сопернику. Искусственный интеллект просматривает все возможные ходы, оценивает их и выбирает наилучший.
+
+\subsection{Описание шагов алгоритма}
+
+\begin{enumerate}
+    \item Генерация начального окна с выбором режимов:
+    \begin{enumerate}
+        \item Создание главного меню с кнопками для выбора режима игры.
+        \item Отображение всех доступных опций на экране.
+    \end{enumerate}
+    
+    \item Выбор режима игры против компьютера:
+    \begin{enumerate}
+        \item Обработка нажатия на кнопку "Игра против ИИ".
+        \item Создание игрового окна с гексагональной сеткой.
+    \end{enumerate}
+    
+    \item Генерация игрового поля и начальных условий:
+    \begin{enumerate}
+        \item Создание сетки гексагонов с заданными размерами.
+        \item Распределение начальных владений между игроком и компьютером.
+        \item Установка нейтральных полей.
+    \end{enumerate}
+    
+    \item Ход игрока:
+    \begin{enumerate}
+        \item Выбор собственного гексагона при первом клике.
+        \item Выбор нейтрального гексагона для захвата при втором клике.
+        \item Проверка допустимости хода (расстояние 1 или 2 клетки).
+        \item Выполнение хода с конвертацией соседних полей.
+    \end{enumerate}
+    
+    \item Ход компьютера (ИИ):
+    \begin{enumerate}
+        \item Генерация списка всех возможных ходов для компьютера.
+        \item Оценка каждого хода на основе стратегических критериев.
+        \item Выбор наиболее выгодного хода из доступных.
+        \item Автоматическое выполнение лучшего хода.
+    \end{enumerate}
+    
+    \item Проверка условий завершения игры:
+    \begin{enumerate}
+        \item Анализ заполненности игрового поля.
+        \item Определение победителя по количеству захваченных клеток.
+        \item Вывод результатов игры на экран.
+    \end{enumerate}
+    
+    \item Завершение игры и возврат в меню:
+    \begin{enumerate}
+        \item Отображение итогового счета и победителя.
+        \item Предложение сыграть снова или выйти в главное меню.
+        \item Очистка игрового состояния и переход к выбранному действию.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Псевдокод алгоритма}
+
+\begin{verbatim}
+function game_vs_ii():
+    create_window(fullscreen, "Hexagon")
+    initialize:
+        move_count = 0
+        hex_radius = 60
+        selected_hex = null
+        player_turn = true
+
+    // Главный игровой цикл
+    while window_open:
+        if game_over(hex_grid):
+            print_results()
+            close_window()
+            return
+
+        // Ход ИИ
+        if not player_turn and not game_over(hex_grid):
+            make_ai_move(hex_grid, "player2")
+            player_turn = true
+            move_count = move_count + 1
+
+        // Обработка событий
+        while has_event():
+            if event = "close" or key_pressed(esc):
+                close_window()
+            if player_turn and left_mouse_clicked():
+                mouse_position = get_mouse_position()
+                // Проверка клика по гексагону
+                for each hexagon h in hex_grid:
+                    if clicked(h, mouse_position, hex_radius):
+                        // Выбор своего гексагона
+                        if selected_hex = null:
+                            if h.player = "player1":
+                                selected_hex = h
+                        // Ход на выбранный гексагон
+                        else:
+                            if h.player = "neutral":
+                                distance = calculate_distance(selected_hex, h)
+                                // Ход на соседний гексагон
+                                if distance = 1:
+                                    h.player = "player1"
+                                    convert_neighbors(hex_grid, h, "player1")
+                                    selected_hex = null
+                                    player_turn = false
+                                    move_count = move_count + 1
+                                // Прыжок через один гексагон
+                                else if distance = 2:
+                                    for each intermediate_hexagon mid:
+                                        if distance(selected_hex, mid) = 1
+                                        and distance(mid, h) = 1:
+                                            selected_hex.player = "neutral"
+                                            h.player = "player1"
+                                            convert_neighbors(hex_grid, h, "player1")
+                                            selected_hex = null
+                                            player_turn = false
+                                            move_count = move_count + 1
+                                            break
+                                // Неверное расстояние - сброс выбора
+                                else:
+                                    selected_hex = null
+                            // Клик по занятому гексагону - сброс выбора
+                            else:
+                                selected_hex = null
+                            break loop
+
+        // Отрисовка
+        clear_window(white_color)
+        draw_grid(hex_grid)
+        // Подсветка выбранного гексагона
+        if selected_hex != null:
+            draw_highlight(selected_hex, yellow_color)
+        display_window()
+end function
+\end{verbatim}
+
+\subsection{Блок-схема алгоритма}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{media/image2.svg}
+    \caption{Блок-схема алгоритма}
+    \label{fig:block_schema}
+\end{figure}
+
+\subsection{Пример работы алгоритма по шагам}
+
+Пример работы функции game\_vs\_ii() — режима игры человека против компьютера. Входные данные при запуске функции:
+
+Существует глобальный массив hexGrid, содержащий 7 шестиугольников (гексагонов)
+
+Каждый гексагон имеет координаты на экране (x, y), координаты в гексагональной сетке (q, r) и владельца
+
+Начальное распределение:
+
+Гексагон 0: принадлежит Игроку 1 (координаты q=0, r=0)
+
+Гексагон 1: нейтральный (q=1, r=0)
+
+Гексагон 2: нейтральный (q=2, r=0)
+
+Гексагон 3: нейтральный (q=0, r=1)
+
+Гексагон 4: принадлежит Компьютеру (q=1, r=1)
+
+Гексагон 5: нейтральный (q=2, r=1)
+
+Гексагон 6: принадлежит Компьютеру (q=3, r=0)
+
+Внутренние переменные функции:
+
+move\_count = 0 (счётчик выполненных ходов)
+
+hex\_radius = 60 (размер гексагона в пикселях)
+
+selected\_hex = null (пока ничего не выбрано)
+
+player\_turn = true (первым ходит игрок)
+
+\textbf{Цикл 1}: Окно открыто, игра не завершена. Ход игрока — ожидается клик.
+
+\textbf{Событие 1}: Игрок кликает на гексагон 0 (свою клетку).
+
+Координаты клика: (110, 105)
+
+Проверка: точка находится в 60 пикселях от центра гексагона 0
+
+Результат: selected\_hex теперь указывает на гексагон 0
+
+Данные не меняются, но на экране появляется жёлтая подсветка
+
+\textbf{Событие 2}: Игрок кликает на гексагон 2 (нейтральную клетку).
+
+Координаты: (215, 105)
+
+Проверка: расстояние между гексагоном 0 (q=0, r=0) и гексагоном 2 (q=2, r=0) = 2
+
+Поиск промежуточного гексагона: гексагон 1 (q=1, r=0) подходит
+
+Изменение данных:
+
+Гексагон 0: player = "neutral" (был "player1")
+
+Гексагон 2: player = "player1" (был "neutral")
+
+Соседи гексагона 2 конвертируются: гексагон 5 и 6 становятся "player1"
+
+Обновление переменных: selected\_hex = null, player\_turn = false, move\_count = 1
+
+\textbf{Цикл 2}: Ход компьютера (player\_turn = false).
+
+Алгоритм ИИ анализирует возможные ходы
+
+Выбирает ход: из гексагона 4 (q=1, r=1) в гексагон 3 (q=0, r=1)
+
+Изменение данных:
+
+Гексагон 3: player = "player2" (был "neutral")
+
+Соседи конвертируются: гексагон 0 остаётся нейтральным
+
+Обновление: player\_turn = true, move\_count = 2
+
+Текущее состояние данных:
+
+Игрок ("player1"): гексагоны 2, 5, 6
+
+Компьютер ("player2"): гексагоны 3, 4
+
+Нейтральные: гексагоны 0, 1
+
+\textbf{Цикл 3}: Снова ход игрока. Игра продолжается аналогично...
+
+\textbf{Завершение}: Когда функция checkGameOver определит, что игра завершена (все клетки захвачены или нет возможных ходов), будет вызвана printResults(), окно закроется и функция вернёт управление.
+
+Что возвращается: Функция ничего не возвращает (void), но:
+
+Изменяет глобальный массив hexGrid
+
+Выводит результаты на экран
+
+Закрывает игровое окно
+
+\subsection{Структуры данных}
+
+Основная структура — класс:
+
+\begin{verbatim}
+class hex {
+    float x, y; // координаты на экране
+    int q, r;   // аксиальные координаты
+    string owner; // player1, player2, neutral
+}
+\end{verbatim}
+
+\subsection{Анализ сложности алгоритма}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Этап} & \textbf{Сложность} \\ \hline
+Генерация поля & O(N) \\ \hline
+Отрисовка & O(N) \\ \hline
+Выбор хода игроком & O(1) \\ \hline
+Конвертация & O(6) \\ \hline
+Поиск ходов AI & O(N²) \\ \hline
+Оценка ходов AI & O(N) \\ \hline
+Ход AI (полный цикл) & O(N³) \\ \hline
+\end{tabular}
+\caption{Анализ сложности частей алгоритма}
+\label{tab:complexity}
+\end{table}
+
+При R = 5 количество клеток = 91, что обеспечивает быструю работу программы.
+
+\section{ИНСТРУКЦИЯ ПОЛЬЗОВАТЕЛЮ}
+
+После компиляции и запуска программы компиляция g++ -std=c++11 -o hexgame main.cpp hexgame.cpp -lsfml-graphics -lsfml-window -lsfml-system запуск ./hexgame.exe
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{media/image3.png}
+    \caption{Запуск программы через командную строку}
+    \label{fig:command_line}
+\end{figure}
+
+Перед пользователем появится окно с выбором режима игры.
+После выбора режима появится игровое поле.
+
+После того как кто-то из игроков выиграет будет вывод в консоль.
+Player1: 3
+
+Player2: 0
+
+Player1 wins!
+
+\section{РЕЗУЛЬТАТЫ}
+
+\subsection{Примеры результатов работы программы}
+
+\begin{enumerate}
+    \item Корректно генерируется окно выбора режимов.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{media/image4.png}
+        \caption{Окно выбора режима}
+        \label{fig:mode_selection}
+    \end{figure}
+    
+    \item Поле корректно генерируется и отображается.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{media/image5.png}
+        \caption{Игровое поле}
+        \label{fig:game_field}
+    \end{figure}
+    
+    \item Фишки двигаются в соответствии с правилами
+    \item В режиме PvP игра проходит полностью.
+    \item В режиме PvE AI делает осмысленные ходы.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.45\textwidth]{media/image6.png}
+        \caption{Поле для игры}
+        \label{fig:game_example1}
+    \end{figure}
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.45\textwidth]{media/image7.png}
+        \caption{Пример выполнения ходов}
+        \label{fig:game_example2}
+    \end{figure}
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.45\textwidth]{media/image8.png}
+        \caption{Пример выполнения ходов}
+        \label{fig:game_example3}
+    \end{figure}
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.45\textwidth]{media/image9.png}
+        \caption{Пример выполнения ходов}
+        \label{fig:game_example4}
+    \end{figure}
+    
+    \item Игра корректно завершается, отображаются результаты.
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{media/image10.png}
+        \caption{Вывод в консоль результатов игры}
+        \label{fig:results}
+    \end{figure}
+\end{enumerate}
+
+\subsection{Анализ полученных результатов}
+
+\begin{itemize}
+    \item Алгоритм корректно обрабатывает все типы ходов.
+    \item AI способен расширять территорию и захватывать клетки.
+    \item Производительность достаточная: задержек не наблюдается.
+    \item Визуальная часть работает стабильно во всех режимах.
+\end{itemize}
+
+\section{ЗАКЛЮЧЕНИЕ}
+
+В ходе выполнения курсовой работы была разработана программная реализация игры «Хексагон» на языке C++. Реализовано:
+
+\begin{enumerate}
+    \item игровое поле;
+    \item логика перемещения и конвертации клеток;
+    \item режим игры против другого игрока;
+    \item режим против искусственного интеллекта;
+    \item визуальная часть с использованием SFML.
+\end{enumerate}
+
+Полученная программа соответствует поставленным требованиям и демонстрирует корректную работу.
+
+\section{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+
+\begin{enumerate}
+    \item Эзрелл У. «Этюды для программистов». Перевод с английского под редакцией Ю. М. БАЯКОВСКОГО р» 1982.
+    \item Red Blob Games — «Hexagonal Grids». \url{https://www.redblobgames.com/grids/hexagons/} (дата обращения 16.12.2025)
+    \item Документация SFML. \url{https://www.sfml-dev.org/} (дата обращения 16.12.2025)
+\end{enumerate}
+
+\end{document}
