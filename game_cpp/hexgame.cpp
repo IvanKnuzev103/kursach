@@ -63,9 +63,7 @@ std::vector<hex> generateHexGridHexShape(int radius, float startX, float startY)
             if (y > maxY) maxY = y;
         }
     }
-// x = q
-// z = r
-// y = -x - z = -q - r
+
     for (int q = -radius; q <= radius; ++q) {
         int r1 = std::max(-radius, -q - radius);
         int r2 = std::min(radius, -q + radius);

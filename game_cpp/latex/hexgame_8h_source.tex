@@ -1,0 +1,39 @@
+\doxysection{hexgame.\+h}
+\hypertarget{hexgame_8h_source}{}\label{hexgame_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ HEXGAME\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ HEXGAME\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }hex\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{float}\ x,\ y;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ q,\ r;}
+\DoxyCodeLine{00012\ \ \ \ \ std::string\ player;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ hex(\textcolor{keywordtype}{int}\ q,\ \textcolor{keywordtype}{int}\ r,\ \textcolor{keywordtype}{float}\ x\_pos,\ \textcolor{keywordtype}{float}\ y\_pos,\ \textcolor{keyword}{const}\ std::string\&\ player\_type);}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ draw\_self(sf::RenderWindow\&\ window);}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ isClicked(sf::Vector2i\ mousePos,\ \textcolor{keywordtype}{float}\ radius);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00019\ \ \ \ \ sf::Color\ getColorForPlayer();}
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{int}\ distance(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhex}{hex}}\&\ a,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhex}{hex}}\&\ b);}
+\DoxyCodeLine{00023\ std::vector<hex>\ generateHexGridHexShape(\textcolor{keywordtype}{int}\ radius,\ \textcolor{keywordtype}{float}\ startX,\ \textcolor{keywordtype}{float}\ startY);}
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{void}\ drawHexGrid(std::vector<hex>\&\ hexGrid,\ sf::RenderWindow\&\ window);}
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{bool}\ checkGameOver(\textcolor{keyword}{const}\ std::vector<hex>\&\ hexGrid);}
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{void}\ printResults(\textcolor{keyword}{const}\ std::vector<hex>\&\ hexGrid);}
+\DoxyCodeLine{00027\ std::vector<std::pair<hex*,\ hex*>>\ getPossibleMoves(\textcolor{keyword}{const}\ std::vector<hex>\&\ hexGrid,\ \textcolor{keyword}{const}\ std::string\&\ aiPlayer);}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{int}\ evaluateMove(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhex}{hex}}\&\ source,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhex}{hex}}\&\ target,\ \textcolor{keyword}{const}\ std::vector<hex>\&\ hexGrid,\ \textcolor{keyword}{const}\ std::string\&\ aiPlayer);}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ convertNeighbors(std::vector<hex>\&\ hexGrid,\ \mbox{\hyperlink{classhex}{hex}}\&\ target,\ \textcolor{keyword}{const}\ std::string\&\ currentPlayer);}
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{bool}\ makeAIMove(std::vector<hex>\&\ hexGrid,\ \textcolor{keyword}{const}\ std::string\&\ aiPlayer);}
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{void}\ game\_vs\_player();}
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{void}\ game\_vs\_ii();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
