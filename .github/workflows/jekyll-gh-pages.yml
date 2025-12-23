@@ -1,13 +1,14 @@
-name: Generate and Deploy Doxygen Documentation
+name: Deploy Existing Doxygen Docs to GitHub Pages
 
 on:
+  # Запуск при изменениях в docs или в исходном коде
   push:
     branches: ["main"]
     paths:
-      - 'src/**'
-      - 'include/**'
+      - 'docs/**'
+      - '**.cpp'
+      - '**.h'
       - 'Doxyfile'
-      - '.github/workflows/**'
   
   workflow_dispatch:
 
@@ -21,53 +22,32 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  generate-and-deploy:
+  deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     
-    runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       
-      - name: Install Doxygen
-        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
-      
-      - name: Generate Doxygen documentation
+      - name: Verify documentation exists
+        id: check-docs
         run: |
-          # Проверяем наличие Doxyfile
-          if [ -f "Doxyfile" ]; then
-            doxygen Doxyfile
-          elif [ -f "Doxyfile.in" ]; then
-            # Генерируем Doxyfile из шаблона если нужно
-            cp Doxyfile.in Doxyfile
-            # Заменяем переменные если нужно
-            sed -i 's/@PROJECT_NAME@/My Project/g' Doxyfile
-            sed -i 's/@PROJECT_NUMBER@/${{ github.ref_name }}/g' Doxyfile
-            doxygen Doxyfile
+          if [ -d "docs" ]; then
+            echo "Documentation found in docs/"
+            echo "exists=true" >> $GITHUB_OUTPUT
           else
-            # Создаем минимальный Doxyfile
-            echo "Generating minimal Doxyfile..."
-            echo "PROJECT_NAME = \"${{ github.repository }}\"" > Doxyfile
-            echo "OUTPUT_DIRECTORY = docs" >> Doxyfile
-            echo "GENERATE_HTML = YES" >> Doxyfile
-            echo "INPUT = ." >> Doxyfile
-            echo "RECURSIVE = YES" >> Doxyfile
-            echo "EXTRACT_ALL = YES" >> Doxyfile
-            doxygen Doxyfile
+            echo "WARNING: docs/ directory not found!"
+            echo "exists=false" >> $GITHUB_OUTPUT
           fi
-      
-      - name: Ensure .nojekyll file exists
-        run: touch docs/.nojekyll
       
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
       
-      - name: Upload generated documentation
+      - name: Upload docs as artifact
+        if: steps.check-docs.outputs.exists == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./docs
