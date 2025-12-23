@@ -1,0 +1,108 @@
+\doxysection{hex Class Reference}
+\hypertarget{classhex}{}\label{classhex}\index{hex@{hex}}
+
+
+{\ttfamily \#include $<$hexgame.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhex_a5d38c131ba748a04511b2a77f08c24b8}{hex}} (int \mbox{\hyperlink{classhex_a2a9af4425df027065f891361fe9e34da}{q}}, int \mbox{\hyperlink{classhex_a867dd5875be59b845d0a5abe92afc015}{r}}, float x\+\_\+pos, float y\+\_\+pos, const std\+::string \&player\+\_\+type)
+\item 
+void \mbox{\hyperlink{classhex_a7c41ba47ea771c795621012e5c941f35}{draw\+\_\+self}} (sf\+::\+Render\+Window \&window)
+\item 
+bool \mbox{\hyperlink{classhex_ab396d41ab7179e2d22cc66ef259db1f4}{is\+Clicked}} (sf\+::\+Vector2i mouse\+Pos, float radius)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classhex_a2ba36c2dea2bc0bd075f6fbf593cdc21}{x}}
+\item 
+float \mbox{\hyperlink{classhex_a5bdfd5039e179ff3105d6b57af40ec63}{y}}
+\item 
+int \mbox{\hyperlink{classhex_a2a9af4425df027065f891361fe9e34da}{q}}
+\item 
+int \mbox{\hyperlink{classhex_a867dd5875be59b845d0a5abe92afc015}{r}}
+\item 
+std\+::string \mbox{\hyperlink{classhex_adf40dedff1779228b8e6647bf4cbb00f}{player}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Color \mbox{\hyperlink{classhex_af23256347639de4ba1be6e9243e235ec}{get\+Color\+For\+Player}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{classhex_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhex_a5d38c131ba748a04511b2a77f08c24b8}\index{hex@{hex}!hex@{hex}}
+\index{hex@{hex}!hex@{hex}}
+\doxysubsubsection{\texorpdfstring{hex()}{hex()}}
+{\footnotesize\ttfamily \label{classhex_a5d38c131ba748a04511b2a77f08c24b8} 
+hex\+::hex (\begin{DoxyParamCaption}\item[{int}]{q}{, }\item[{int}]{r}{, }\item[{float}]{x\+\_\+pos}{, }\item[{float}]{y\+\_\+pos}{, }\item[{const std\+::string \&}]{player\+\_\+type}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{classhex_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhex_a7c41ba47ea771c795621012e5c941f35}\index{hex@{hex}!draw\_self@{draw\_self}}
+\index{draw\_self@{draw\_self}!hex@{hex}}
+\doxysubsubsection{\texorpdfstring{draw\_self()}{draw\_self()}}
+{\footnotesize\ttfamily \label{classhex_a7c41ba47ea771c795621012e5c941f35} 
+void hex\+::draw\+\_\+self (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{}\end{DoxyParamCaption})}
+
+\Hypertarget{classhex_af23256347639de4ba1be6e9243e235ec}\index{hex@{hex}!getColorForPlayer@{getColorForPlayer}}
+\index{getColorForPlayer@{getColorForPlayer}!hex@{hex}}
+\doxysubsubsection{\texorpdfstring{getColorForPlayer()}{getColorForPlayer()}}
+{\footnotesize\ttfamily \label{classhex_af23256347639de4ba1be6e9243e235ec} 
+sf\+::\+Color hex\+::get\+Color\+For\+Player (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classhex_ab396d41ab7179e2d22cc66ef259db1f4}\index{hex@{hex}!isClicked@{isClicked}}
+\index{isClicked@{isClicked}!hex@{hex}}
+\doxysubsubsection{\texorpdfstring{isClicked()}{isClicked()}}
+{\footnotesize\ttfamily \label{classhex_ab396d41ab7179e2d22cc66ef259db1f4} 
+bool hex\+::is\+Clicked (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2i}]{mouse\+Pos}{, }\item[{float}]{radius}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classhex_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhex_adf40dedff1779228b8e6647bf4cbb00f}\index{hex@{hex}!player@{player}}
+\index{player@{player}!hex@{hex}}
+\doxysubsubsection{\texorpdfstring{player}{player}}
+{\footnotesize\ttfamily \label{classhex_adf40dedff1779228b8e6647bf4cbb00f} 
+std\+::string hex\+::player}
+
+\Hypertarget{classhex_a2a9af4425df027065f891361fe9e34da}\index{hex@{hex}!q@{q}}
+\index{q@{q}!hex@{hex}}
+\doxysubsubsection{\texorpdfstring{q}{q}}
+{\footnotesize\ttfamily \label{classhex_a2a9af4425df027065f891361fe9e34da} 
+int hex\+::q}
+
+\Hypertarget{classhex_a867dd5875be59b845d0a5abe92afc015}\index{hex@{hex}!r@{r}}
+\index{r@{r}!hex@{hex}}
+\doxysubsubsection{\texorpdfstring{r}{r}}
+{\footnotesize\ttfamily \label{classhex_a867dd5875be59b845d0a5abe92afc015} 
+int hex\+::r}
+
+\Hypertarget{classhex_a2ba36c2dea2bc0bd075f6fbf593cdc21}\index{hex@{hex}!x@{x}}
+\index{x@{x}!hex@{hex}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily \label{classhex_a2ba36c2dea2bc0bd075f6fbf593cdc21} 
+float hex\+::x}
+
+\Hypertarget{classhex_a5bdfd5039e179ff3105d6b57af40ec63}\index{hex@{hex}!y@{y}}
+\index{y@{y}!hex@{hex}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily \label{classhex_a5bdfd5039e179ff3105d6b57af40ec63} 
+float hex\+::y}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{hexgame_8h}{hexgame.\+h}}\item 
+\mbox{\hyperlink{hexgame_8cpp}{hexgame.\+cpp}}\end{DoxyCompactItemize}

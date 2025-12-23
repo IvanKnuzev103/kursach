@@ -1,0 +1,37 @@
+# МИНИМАЛЬНЫЙ .gitignore для KURSACH
+
+# 1. Исполняемые файлы
+*.exe
+*.out
+
+# 2. Объектные файлы
+*.o
+*.obj
+
+# 3. Документация Doxygen
+/docs/html/
+/docs/latex/
+doxygen_log.txt
+
+# 4. Системные файлы
+.DS_Store
+Thumbs.db
+
+# 5. Среда сборки
+build/
+CMakeFiles/
+*.cmake
+Makefile
+
+# 6. Временные файлы
+*~
+*.tmp
+*.swp
+
+# 7. Файлы IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# 8. Ваш отчет (если отдельный файл)
+/otchet

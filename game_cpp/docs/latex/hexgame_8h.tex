@@ -1,0 +1,106 @@
+\doxysection{hexgame.\+h File Reference}
+\hypertarget{hexgame_8h}{}\label{hexgame_8h}\index{hexgame.h@{hexgame.h}}
+{\ttfamily \#include $<$SFML/\+Graphics.\+hpp$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classhex}{hex}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{hexgame_8h_a93dbae511be800e13aef8bd3598c97fb}{distance}} (const \mbox{\hyperlink{classhex}{hex}} \&a, const \mbox{\hyperlink{classhex}{hex}} \&b)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \mbox{\hyperlink{hexgame_8h_a3369c8c84ed98317664b2e84c0c59d5d}{generate\+Hex\+Grid\+Hex\+Shape}} (int radius, float startX, float startY)
+\item 
+void \mbox{\hyperlink{hexgame_8h_a03c99c284d4848a959d3be5e81e5e4ff}{draw\+Hex\+Grid}} (std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&hex\+Grid, sf\+::\+Render\+Window \&window)
+\item 
+bool \mbox{\hyperlink{hexgame_8h_a3d4d37cfa5ebcd5e4161ca2e98bce41c}{check\+Game\+Over}} (const std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&hex\+Grid)
+\item 
+void \mbox{\hyperlink{hexgame_8h_a7e0a249724b30547520b244a33a1057f}{print\+Results}} (const std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&hex\+Grid)
+\item 
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classhex}{hex}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhex}{hex}} \texorpdfstring{$\ast$}{*} $>$ $>$ \mbox{\hyperlink{hexgame_8h_aeddce41f5f4370726c11214226592129}{get\+Possible\+Moves}} (const std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&hex\+Grid, const std\+::string \&ai\+Player)
+\item 
+int \mbox{\hyperlink{hexgame_8h_a3377f479750a08c82e59b4daf40a7646}{evaluate\+Move}} (const \mbox{\hyperlink{classhex}{hex}} \&source, const \mbox{\hyperlink{classhex}{hex}} \&target, const std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&hex\+Grid, const std\+::string \&ai\+Player)
+\item 
+void \mbox{\hyperlink{hexgame_8h_a6c6d9be5b6d5b598413e90cce6ba13c4}{convert\+Neighbors}} (std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&hex\+Grid, \mbox{\hyperlink{classhex}{hex}} \&target, const std\+::string \&current\+Player)
+\item 
+bool \mbox{\hyperlink{hexgame_8h_afb99cfde25335e2016c0cf0f2ff5d44c}{make\+AIMove}} (std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&hex\+Grid, const std\+::string \&ai\+Player)
+\item 
+void \mbox{\hyperlink{hexgame_8h_a1b42a0c315797f498e4545a458df9f8b}{game\+\_\+vs\+\_\+player}} ()
+\item 
+void \mbox{\hyperlink{hexgame_8h_ab0745eb22c93ab57e273b338dc1cb366}{game\+\_\+vs\+\_\+ii}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{hexgame_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{hexgame_8h_a3d4d37cfa5ebcd5e4161ca2e98bce41c}\index{hexgame.h@{hexgame.h}!checkGameOver@{checkGameOver}}
+\index{checkGameOver@{checkGameOver}!hexgame.h@{hexgame.h}}
+\doxysubsubsection{\texorpdfstring{checkGameOver()}{checkGameOver()}}
+{\footnotesize\ttfamily \label{hexgame_8h_a3d4d37cfa5ebcd5e4161ca2e98bce41c} 
+bool check\+Game\+Over (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&}]{hex\+Grid}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hexgame_8h_a6c6d9be5b6d5b598413e90cce6ba13c4}\index{hexgame.h@{hexgame.h}!convertNeighbors@{convertNeighbors}}
+\index{convertNeighbors@{convertNeighbors}!hexgame.h@{hexgame.h}}
+\doxysubsubsection{\texorpdfstring{convertNeighbors()}{convertNeighbors()}}
+{\footnotesize\ttfamily \label{hexgame_8h_a6c6d9be5b6d5b598413e90cce6ba13c4} 
+void convert\+Neighbors (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&}]{hex\+Grid}{, }\item[{\mbox{\hyperlink{classhex}{hex}} \&}]{target}{, }\item[{const std\+::string \&}]{current\+Player}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hexgame_8h_a93dbae511be800e13aef8bd3598c97fb}\index{hexgame.h@{hexgame.h}!distance@{distance}}
+\index{distance@{distance}!hexgame.h@{hexgame.h}}
+\doxysubsubsection{\texorpdfstring{distance()}{distance()}}
+{\footnotesize\ttfamily \label{hexgame_8h_a93dbae511be800e13aef8bd3598c97fb} 
+int distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhex}{hex}} \&}]{a}{, }\item[{const \mbox{\hyperlink{classhex}{hex}} \&}]{b}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hexgame_8h_a03c99c284d4848a959d3be5e81e5e4ff}\index{hexgame.h@{hexgame.h}!drawHexGrid@{drawHexGrid}}
+\index{drawHexGrid@{drawHexGrid}!hexgame.h@{hexgame.h}}
+\doxysubsubsection{\texorpdfstring{drawHexGrid()}{drawHexGrid()}}
+{\footnotesize\ttfamily \label{hexgame_8h_a03c99c284d4848a959d3be5e81e5e4ff} 
+void draw\+Hex\+Grid (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&}]{hex\+Grid}{, }\item[{sf\+::\+Render\+Window \&}]{window}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hexgame_8h_a3377f479750a08c82e59b4daf40a7646}\index{hexgame.h@{hexgame.h}!evaluateMove@{evaluateMove}}
+\index{evaluateMove@{evaluateMove}!hexgame.h@{hexgame.h}}
+\doxysubsubsection{\texorpdfstring{evaluateMove()}{evaluateMove()}}
+{\footnotesize\ttfamily \label{hexgame_8h_a3377f479750a08c82e59b4daf40a7646} 
+int evaluate\+Move (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhex}{hex}} \&}]{source}{, }\item[{const \mbox{\hyperlink{classhex}{hex}} \&}]{target}{, }\item[{const std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&}]{hex\+Grid}{, }\item[{const std\+::string \&}]{ai\+Player}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hexgame_8h_ab0745eb22c93ab57e273b338dc1cb366}\index{hexgame.h@{hexgame.h}!game\_vs\_ii@{game\_vs\_ii}}
+\index{game\_vs\_ii@{game\_vs\_ii}!hexgame.h@{hexgame.h}}
+\doxysubsubsection{\texorpdfstring{game\_vs\_ii()}{game\_vs\_ii()}}
+{\footnotesize\ttfamily \label{hexgame_8h_ab0745eb22c93ab57e273b338dc1cb366} 
+void game\+\_\+vs\+\_\+ii (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hexgame_8h_a1b42a0c315797f498e4545a458df9f8b}\index{hexgame.h@{hexgame.h}!game\_vs\_player@{game\_vs\_player}}
+\index{game\_vs\_player@{game\_vs\_player}!hexgame.h@{hexgame.h}}
+\doxysubsubsection{\texorpdfstring{game\_vs\_player()}{game\_vs\_player()}}
+{\footnotesize\ttfamily \label{hexgame_8h_a1b42a0c315797f498e4545a458df9f8b} 
+void game\+\_\+vs\+\_\+player (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hexgame_8h_a3369c8c84ed98317664b2e84c0c59d5d}\index{hexgame.h@{hexgame.h}!generateHexGridHexShape@{generateHexGridHexShape}}
+\index{generateHexGridHexShape@{generateHexGridHexShape}!hexgame.h@{hexgame.h}}
+\doxysubsubsection{\texorpdfstring{generateHexGridHexShape()}{generateHexGridHexShape()}}
+{\footnotesize\ttfamily \label{hexgame_8h_a3369c8c84ed98317664b2e84c0c59d5d} 
+std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ generate\+Hex\+Grid\+Hex\+Shape (\begin{DoxyParamCaption}\item[{int}]{radius}{, }\item[{float}]{startX}{, }\item[{float}]{startY}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hexgame_8h_aeddce41f5f4370726c11214226592129}\index{hexgame.h@{hexgame.h}!getPossibleMoves@{getPossibleMoves}}
+\index{getPossibleMoves@{getPossibleMoves}!hexgame.h@{hexgame.h}}
+\doxysubsubsection{\texorpdfstring{getPossibleMoves()}{getPossibleMoves()}}
+{\footnotesize\ttfamily \label{hexgame_8h_aeddce41f5f4370726c11214226592129} 
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classhex}{hex}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhex}{hex}} \texorpdfstring{$\ast$}{*} $>$ $>$ get\+Possible\+Moves (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&}]{hex\+Grid}{, }\item[{const std\+::string \&}]{ai\+Player}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hexgame_8h_afb99cfde25335e2016c0cf0f2ff5d44c}\index{hexgame.h@{hexgame.h}!makeAIMove@{makeAIMove}}
+\index{makeAIMove@{makeAIMove}!hexgame.h@{hexgame.h}}
+\doxysubsubsection{\texorpdfstring{makeAIMove()}{makeAIMove()}}
+{\footnotesize\ttfamily \label{hexgame_8h_afb99cfde25335e2016c0cf0f2ff5d44c} 
+bool make\+AIMove (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&}]{hex\+Grid}{, }\item[{const std\+::string \&}]{ai\+Player}{}\end{DoxyParamCaption})}
+
+\Hypertarget{hexgame_8h_a7e0a249724b30547520b244a33a1057f}\index{hexgame.h@{hexgame.h}!printResults@{printResults}}
+\index{printResults@{printResults}!hexgame.h@{hexgame.h}}
+\doxysubsubsection{\texorpdfstring{printResults()}{printResults()}}
+{\footnotesize\ttfamily \label{hexgame_8h_a7e0a249724b30547520b244a33a1057f} 
+void print\+Results (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classhex}{hex}} $>$ \&}]{hex\+Grid}{}\end{DoxyParamCaption})}
+
